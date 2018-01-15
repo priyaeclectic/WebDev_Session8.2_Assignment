@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Assignment 8.2 </title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body><center>
+		<h3>MySelfie Tech</h3>
+    			<br><br><br><br><br>			<!-- Define controls for the form -->
+		<input type="button" id="lgn" value="Login">	
+		<input type="button" id="signup" value="Signup">	
+		<input type="text" id="name" placeholder="Name"><br>
+		<input type="text" id="email" placeholder="email"><br>
+		<input type="text" id="passwd" placeholder="Password"><br>
+		<input type="button" id="submit" value="Submit Query">
+		<input type="button" id="loginsubmit" value="Submit Query">
+		<input type="button" id="back" value="back">
+		<div id="info"></div>
+	</center>
+</body>
+<script type="text/javascript">
+	$("#lgn").click(function(){			//Click event for login button
+	    $("#lgn").hide();
+	    $("#signup").hide();
+	    $("#email").show();
+		$("#passwd").show();
+		$("#loginsubmit").show();
+		$("#back").show();
+
+});
+	$("#signup").click(function(){		//Click event for signup button
+		$("#lgn").hide();
+	    $("#signup").hide();
+	    $("#email").show();
+		$("#name").show();
+		$("#passwd").show();
+		$("#submit").show();
+		$("#back").show();
+});		
+	$( document ).ready(function() {	//Onload functionality
+		$("#email").hide();
+		$("#name").hide();
+		$("#passwd").hide();
+		$("#submit").hide();
+		$("#loginsubmit").hide();
+		$("#back").hide();
+});	
+	$("#back").click(function() {		//Click event for back button 
+		document.getElementById("info").innerHTML="";
+		$("#email").hide();
+		$("#name").hide();
+		$("#passwd").hide();
+		$("#submit").hide();
+		$("#loginsubmit").hide();
+		$("#back").hide();
+		$("#lgn").show();
+	    $("#signup").show();
+});
+
+		$("#submit").click(function(){	//Form submission for signup
+				// Get input name
+				var firstName = $("#name").val();
+				// Store data
+	    		localStorage.setItem("name", firstName);
+				var email = $("#email").val();
+				// Store data
+	    		localStorage.setItem("email", email);
+				var passwd = $("#passwd").val();
+				// Store data
+	    		localStorage.setItem("passwd", passwd);
+				alert("Your details are saved.");
+				$("#name").val('');
+				$("#email").val('');
+				$("#passwd").val('');
+
+	});	
+
+		$("#loginsubmit").click(function(){		//Form submission for login
+			// Get input name
+			var email = $("#email").val();
+			var passwd = $("#passwd").val();
+			if ((localStorage.getItem("email") !== email)||(localStorage.getItem("passwd") !== passwd)){
+				document.getElementById("info").innerHTML="Username and password is incorrect";
+			}
+			else{
+				document.getElementById("info").innerHTML="Welcome "+localStorage.getItem("name");
+			}
+			$("#name").val('');
+			$("#email").val('');
+			$("#passwd").val('');
+		});	
+</script>	
+</html>
